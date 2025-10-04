@@ -12,8 +12,6 @@ fun MainPage(){
             .fillMaxSize()
 
     ) {
-        modifier = Modifier
-            .fillMaxSize()
 
     }
 }

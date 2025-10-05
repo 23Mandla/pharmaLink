@@ -39,8 +39,6 @@ jobs:
         with:
           api-level: 34
           build-tools: 34.0.0
-          target: google_apis/x86_64
-          emulator-options: '-no-window -gpu swiftshader_indirect'
 
       # Graddle executable
       - name: Make Gradle executable
@@ -63,7 +61,12 @@ jobs:
 
       # run instrument test
       - name: Instrument Tests
-        run: ./gradlew connectedAndroidTest
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          script: ./gradlew connectedAndroidTest
 
       # If previous jobs fail
       - name: CI/Cd failed

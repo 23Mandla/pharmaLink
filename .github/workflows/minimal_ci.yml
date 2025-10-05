@@ -52,13 +52,6 @@ jobs:
       - name: Assemble Debug
         run: ./gradlew assembleDebug
 
-      # start emulator
-      - name: Start Emulator
-        run: |
-          echo "no" | $ANDROID_HOME/emulator/emulator -avd test -no-window -gpu swiftshader_indirect &
-          adb wait-for-device
-          adb shell input keyevent 82 &
-
       # run instrument test
       - name: Instrument Tests
         uses: reactivecircus/android-emulator-runner@v2

@@ -1,16 +1,19 @@
-package com.example.pharmalink.feature.login
+package com.example.pharmalink.ui.login
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -40,6 +43,8 @@ fun Login(onClick: () -> Unit = {}){
             text = "Login",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .testTag("loginText"),
 
         )
 
@@ -51,8 +56,9 @@ fun Login(onClick: () -> Unit = {}){
                 email = it
             },
             label = { Text(
-                email.ifEmpty { "Email" },
-                color = if (emailError.isNotEmpty()) Color.Red else Color.Unspecified
+                emailError.ifEmpty { "Email" },
+                color = if (emailError.isNotEmpty()) Color.Red else Color.Unspecified,
+                modifier = Modifier.testTag("emailLabel")
             ) },
             leadingIcon = {
                 Icon(
@@ -63,11 +69,17 @@ fun Login(onClick: () -> Unit = {}){
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 23.dp),
+                .padding(vertical = 8.dp, horizontal = 23.dp)
+                .testTag("emailField")
+                .semantics {
+                    contentDescription = ""
+                    text = AnnotatedString(email)
+                },
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent)
+                disabledIndicatorColor = Color.Transparent
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -78,8 +90,9 @@ fun Login(onClick: () -> Unit = {}){
                 password = it
             },
             label = { Text(
-                email.ifEmpty { "Password" },
-                color = if (passwordError.isNotEmpty()) Color.Red else Color.Unspecified
+                passwordError.ifEmpty { "Password" },
+                color = if (passwordError.isNotEmpty()) Color.Red else Color.Unspecified,
+                modifier = Modifier.testTag("passwordLabel")
             ) },
             leadingIcon = {
                 Icon(
@@ -103,7 +116,8 @@ fun Login(onClick: () -> Unit = {}){
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 23.dp),
+                .padding(vertical = 8.dp, horizontal = 23.dp)
+                .testTag("passwordField"),
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
@@ -141,15 +155,17 @@ fun Login(onClick: () -> Unit = {}){
 
         Button(
             onClick = {
-                emailError = if (email.isEmpty()) "Email is required" else ""
-                passwordError = if (password.isEmpty()) "Password is required" else ""
-                if(emailError.isEmpty() && passwordError.isEmpty()){
-                    //TODO Login logic
+                emailError = if (email.isBlank()) "Email is required!" else ""
+                passwordError = if (password.isBlank()) "Password is required!" else ""
+                if(emailError.isEmpty() && passwordError.isEmpty()) {
+                    onClick()
                 }
+
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 23.dp),
+                .padding(vertical = 8.dp, horizontal = 23.dp)
+                .testTag("loginButton"),
             shape = RoundedCornerShape(8.dp),
         ) {
             Text(
@@ -173,7 +189,5 @@ fun Login(onClick: () -> Unit = {}){
             )
 
         }
-
     }
-
 }

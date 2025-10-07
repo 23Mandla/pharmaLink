@@ -102,15 +102,17 @@ fun Login(onClick: () -> Unit = {}){
             },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
-                val image = if (passwordVisible)
-                    painterResource(R.drawable.baseline_visibility_24)
-                else
-                    painterResource(R.drawable.baseline_visibility_off_24)
-                Icon(
-                    painter = image,
-                    contentDescription = "Password Toggle",
-                    modifier = Modifier.clickable {passwordVisible = !passwordVisible}
-                )
+                val image = if (passwordVisible) painterResource(R.drawable.baseline_visibility_24) else painterResource(R.drawable.baseline_visibility_off_24)
+                IconButton (
+                    onClick = { passwordVisible = !passwordVisible } ,
+                    modifier = Modifier
+                            .testTag("passwordToggle")
+                ) {
+                    Icon(
+                        painter = image,
+                        contentDescription = "Password Toggle",
+                    )
+                }
 
             },
             shape = RoundedCornerShape(8.dp),

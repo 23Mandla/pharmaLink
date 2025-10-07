@@ -4,6 +4,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.*
 import com.example.pharmalink.ui.theme.PharmaLinkTheme
 import com.example.pharmalink.utils.TextChange
+import com.example.pharmalink.utils.ToggleBtn
 import org.junit.*
 
 
@@ -25,19 +26,40 @@ class LoginTest {
 
         rule.onNodeWithTag("loginText").assertIsDisplayed()
 
-        val emailField = rule.onNodeWithTag("emailField")
+        val emailField = rule.onNodeWithTag(
+            "emailField"
+        )
         emailField.assertIsDisplayed()
-        rule.onNodeWithText("Email").assertExists()
 
-        val passwordField = rule.onNodeWithTag("passwordField")
+        rule.onNodeWithText(
+            "Email"
+        )
+            .assertExists()
+
+        val passwordField = rule.onNodeWithTag(
+            "passwordField"
+        )
         passwordField.assertIsDisplayed()
-        rule.onNodeWithText("Password").assertExists()
 
-        rule.onNodeWithText("Remember Me").assertIsDisplayed()
-        rule.onNodeWithText("Forgot Password?").assertIsDisplayed()
+        rule.onNodeWithText(
+            "Password"
+        )
+            .assertExists()
 
-        val loginButton = rule.onNodeWithTag("loginButton")
-        loginButton.assertIsDisplayed()
+        rule.onNodeWithText(
+            "Remember Me"
+        )
+            .assertIsDisplayed()
+
+        rule.onNodeWithText(
+            "Forgot Password?"
+        )
+            .assertIsDisplayed()
+
+        rule.onNodeWithTag(
+            "loginButton"
+        )
+            .assertIsDisplayed()
     }
 
     @Test
@@ -50,10 +72,22 @@ class LoginTest {
 
     }
 
-    @Ignore("Test coming soon")
     @Test
     fun passwordFunctionality() {
-        // TODO visibility toggle icon changes the password input from obscured to visible and back again
+
+        val btnToggle = ToggleBtn()
+
+        rule.onNodeWithTag(
+            "passwordField"
+        )
+            .performTextInput("secrete")
+
+        rule.onNodeWithTag(
+            "passwordToggle"
+        )
+            .assertIsDisplayed()
+            .performClick()
+
     }
 
     @Ignore("Test coming soon")

@@ -1,7 +1,9 @@
 package com.example.pharmalink.navigation
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -12,9 +14,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.pharmalink.R
+import com.example.pharmalink.ui.components.TopBar
 import com.example.pharmalink.ui.home.MainPage
 import com.example.pharmalink.ui.login.Login
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNav(){
     val navController = rememberNavController()
@@ -23,7 +27,14 @@ fun AppNav(){
 
     Scaffold(
         containerColor = colorResource(R.color.white),
-        contentWindowInsets = WindowInsets(0, 0, 0, 0)
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        topBar = {
+            if(currentScreen == "mainPage"){
+                TopBar(
+                    scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+                )
+            }
+        }
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -44,7 +55,5 @@ fun AppNav(){
                 }
             }
         }
-
     }
-
 }

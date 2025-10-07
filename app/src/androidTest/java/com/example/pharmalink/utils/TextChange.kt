@@ -11,7 +11,7 @@ fun TextChange(
     tag: String,
     textChange: String,
     rule: ComposeTestRule
-) : Unit {
+)  {
 
     if (tag == "emailField") {
         rule.onNodeWithTag(

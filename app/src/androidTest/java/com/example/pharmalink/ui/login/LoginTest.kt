@@ -4,7 +4,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.*
 import com.example.pharmalink.ui.theme.PharmaLinkTheme
 import com.example.pharmalink.utils.TextChange
-import com.example.pharmalink.utils.ToggleBtn
 import org.junit.*
 
 
@@ -74,8 +73,6 @@ class LoginTest {
 
     @Test
     fun passwordFunctionality() {
-
-        val btnToggle = ToggleBtn()
 
         rule.onNodeWithTag(
             "passwordField"

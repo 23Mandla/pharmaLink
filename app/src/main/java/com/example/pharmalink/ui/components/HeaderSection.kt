@@ -9,7 +9,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,9 +32,6 @@ fun HeaderSection(topBar: @Composable () -> Unit = {}){
             containerColor = colorResource(R.color.lightNavy)
         ),
         shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 10.dp
-        )
     ) {
         Column(
             modifier = Modifier
@@ -55,13 +51,14 @@ fun HeaderSection(topBar: @Composable () -> Unit = {}){
             Text(
                 today(),
                 fontSize = 16.sp,
-                color = Color.White
+                color = Color.White,
+
             )
         }
     }
 }
 
-// return tody's date
+// return today's date
 @RequiresApi(Build.VERSION_CODES.O)
 fun today(): String {
     val today = LocalDate.now()

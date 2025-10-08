@@ -1,5 +1,7 @@
 package com.example.pharmalink.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -7,7 +9,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,9 +19,10 @@ import com.example.pharmalink.ui.components.TopBar
 import com.example.pharmalink.ui.home.MainPage
 import com.example.pharmalink.ui.login.Login
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNav(){
+fun AppNav(showTopBar : Boolean = true){
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = backStackEntry?.destination?.route
@@ -29,7 +31,7 @@ fun AppNav(){
         containerColor = colorResource(R.color.white),
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
-            if(currentScreen == "mainPage"){
+            if(currentScreen == "mainPage" && showTopBar){
                 TopBar(
                     scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
                 )
@@ -51,7 +53,7 @@ fun AppNav(){
                     Login(onClick = { navController.navigate("mainPage") })
                 }
                 composable("mainPage") {
-                    MainPage()
+                    MainPage(true)
                 }
             }
         }

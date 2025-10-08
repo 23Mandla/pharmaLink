@@ -103,8 +103,7 @@ class LoginTest {
     @Ignore("Test coming soon")
     @Test
     fun longInput() {
-        // Test the UI's behavior and rendering when a very long string is entered into the email field to check for any text overflow or layout issues.
-        // TODO implement test
+        // TODO very long string is entered into the email field to check for any text overflow or layout issues
     }
 
 
@@ -117,7 +116,6 @@ class LoginTest {
     @Ignore("Test coming soon")
     @Test
     fun clickAbleTexts() {
-        // Verify that the 'Forgot Password?' text is clickable, although no action is currently implemented (TODO).
         // TODO 'Forgot Password?' and 'Sign Up' text is a clickable action
     }
 

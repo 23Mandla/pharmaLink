@@ -50,17 +50,15 @@ class TopBarTest {
     @Ignore("Test coming soon")
     @Test
     fun scrollIntegration() {
-        // Pass a `TopAppBarScrollBehavior` and simulate a scroll gesture to verify the TopAppBar's position and height changes accordingly.
-        //  with a null or default (non-scrolling) behavior to ensure it remains fixed
-        // TODO implement test
+        // TODO topBar behaviour when content scrolled
+        // waiting for more content in home page
 
     }
 
     @Ignore("Test coming soon")
     @Test
     fun landscapeLayout() {
-        // Verify that the layout of the `TopBar` components remains correct and usable when the device is in landscape mode.
-        // TODO implement test
+        // TODO TopBar components remains correct and usable when the device is in landscape mode.
     }
 
 

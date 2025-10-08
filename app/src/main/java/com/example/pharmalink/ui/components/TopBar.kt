@@ -49,6 +49,8 @@ fun TopBar(
                 )
             }
         },
+        modifier = Modifier
+            .testTag("topBar"),
         scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f)

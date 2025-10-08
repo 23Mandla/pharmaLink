@@ -61,4 +61,10 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     // navigation
     implementation(libs.androidx.navigation.compose)
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+    // Coroutines for suspend funcions
+    implementation(libs.kotlinx.coroutines.android)
 }

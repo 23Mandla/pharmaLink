@@ -1,6 +1,5 @@
 package com.example.pharmalink.ui.components
 
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
@@ -8,12 +7,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
+import androidx.navigation.NavHostController
+import com.example.pharmalink.data.dataclass.Medication
 
 @Composable
-fun MedSection(){
+fun MedSection(
+    medications: List<Medication> = emptyList(),
+    navController: NavHostController? = null,
+    onMedClick: (Medication) -> Unit = {}
+){
     val context = LocalContext.current
+
     LazyVerticalGrid(
         columns = GridCells.Fixed(2), // Adaptive
         contentPadding = PaddingValues(16.dp),
@@ -25,16 +30,17 @@ fun MedSection(){
             .height(500.dp)
     ) {
 
-        items(10) {
+        items(medications) { medication ->
             MedCard(
-                context = context
+                context = context,
+                medication = medication,
+                onClick = {
+                    if (navController != null) {
+                        navController.navigate("medicationPage")
+                        onMedClick(medication)
+                    }
+                }
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun MedSectionPreview(){
-    MedSection()
 }

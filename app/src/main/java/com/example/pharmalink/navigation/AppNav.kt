@@ -18,6 +18,7 @@ import com.example.pharmalink.R
 import com.example.pharmalink.ui.components.TopBar
 import com.example.pharmalink.ui.home.MainPage
 import com.example.pharmalink.ui.login.Login
+import com.example.pharmalink.ui.medication.MedicationPage
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,7 +54,11 @@ fun AppNav(showTopBar : Boolean = true){
                     Login(onClick = { navController.navigate("mainPage") })
                 }
                 composable("mainPage") {
-                    MainPage(true)
+                    MainPage(true, navController)
+                }
+
+                composable("medicationPage") {
+                    MedicationPage()
                 }
             }
         }

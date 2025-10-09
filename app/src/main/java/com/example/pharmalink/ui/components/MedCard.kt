@@ -16,18 +16,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
+import com.example.pharmalink.data.dataclass.Medication
 
 @Composable
-fun MedCard(context: Context){
+fun MedCard(context: Context, medication: Medication, onClick: () -> Unit = {}){
     Card (
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {Toast
-                .makeText(
-                    context,
-                    "Medication information coming soon!!!",
-                    Toast.LENGTH_LONG)
-                .show()
+            .clickable {
+                onClick()
             },
         colors = CardDefaults.cardColors(
             containerColor = Color.White
@@ -65,16 +62,14 @@ fun MedCard(context: Context){
             Spacer(modifier = Modifier.height(7.dp))
 
             Text(
-                "Ibuprofen",
+                medication.medicationName,
                 fontSize = 18.sp
             )
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                "3 times a day"
+                medication.dosage
             )
-
-
         }
     }
 }
@@ -82,5 +77,12 @@ fun MedCard(context: Context){
 @Preview
 @Composable
 fun MedCardPreview(){
-    MedCard(LocalContext.current)
+    MedCard(LocalContext.current, Medication(
+        "Every evening",
+        1,
+        "Diazepam",
+        "Dev",
+        731,
+        "10 mg"
+    ))
 }

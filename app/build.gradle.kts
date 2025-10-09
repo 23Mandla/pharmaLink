@@ -65,6 +65,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
-    // Coroutines for suspend funcions
+    // Coroutines for suspend functions
     implementation(libs.kotlinx.coroutines.android)
+    //mok test implementation
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
 }

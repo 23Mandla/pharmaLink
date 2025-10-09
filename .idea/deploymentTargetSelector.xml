@@ -8,9 +8,6 @@
       <SelectionState runConfigName="LoginTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="emailPasswordState()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="TopBarTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>

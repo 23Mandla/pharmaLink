@@ -12,7 +12,6 @@ class HeaderSectionTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-
     @Test
     fun headerSectionTopBar() {
         composeTestRule.setContent {

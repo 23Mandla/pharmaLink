@@ -21,23 +21,15 @@ import com.example.pharmalink.data.viewmodel.ViewModelFactory
 import com.example.pharmalink.ui.components.HeaderSection
 import com.example.pharmalink.ui.components.MedSection
 import com.example.pharmalink.ui.components.MedsHeader
+import com.example.pharmalink.ui.components.WeeklyCalendar
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainPage(
     bool: Boolean,
-    navController: NavHostController? = null
+    navController: NavHostController? = null,
+    viewModel: MedicationViewModel = viewModel()
     ) {
-
-    val repository = MedicationImpl(
-        apiService = InternetService.medicationApiService,
-        mapper = InternetService.medicationMapper
-    )
-
-    // view model factory ? with data injection
-    val factory = ViewModelFactory(repository)
-
-    val viewModel : MedicationViewModel = viewModel(factory = factory)
 
     val medicationState = viewModel.medicationState.collectAsStateWithLifecycle()
     Log.d("MedicationState", medicationState.value.toString())
@@ -49,6 +41,7 @@ fun MainPage(
 
     ) {
         item { HeaderSection() }
+        item { WeeklyCalendar() }
         item { MedsHeader() }
         item { MedSection(
             medicationState.value.medication,
@@ -66,4 +59,5 @@ fun PreviewMainPage() {
     MainPage(
         false,
         navController = NavHostController(LocalContext.current))
+
 }

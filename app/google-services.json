@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "969717671561",
+    "project_id": "medication-a77a0",
+    "storage_bucket": "medication-a77a0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969717671561:android:454dbe110cc6c03f8c8858",
+        "android_client_info": {
+          "package_name": "com.example.pharmalink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRIeJPZL1Dtcm2dq89wpOBD1Fe4wGjkEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969717671561:android:9fbe553e92095bcd8c8858",
+        "android_client_info": {
+          "package_name": "com.health.pharmalink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRIeJPZL1Dtcm2dq89wpOBD1Fe4wGjkEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

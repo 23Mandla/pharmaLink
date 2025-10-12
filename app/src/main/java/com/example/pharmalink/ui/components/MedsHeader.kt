@@ -20,14 +20,16 @@ fun MedsHeader(){
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding()
-            .padding(16.dp)
+            .padding(
+                vertical = 2.dp, horizontal = 10.dp
+            )
             .background(Color.White),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
 
     ) {
         Text(
-            "Medications",
+            "Today's medication",
             fontSize = 20.sp,
 
         )

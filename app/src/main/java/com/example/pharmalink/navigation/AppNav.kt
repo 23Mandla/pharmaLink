@@ -10,11 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.pharmalink.R
+import com.example.pharmalink.data.repository.MedicationImpl
+import com.example.pharmalink.data.retroClient.InternetService
+import com.example.pharmalink.data.viewmodel.MedicationViewModel
+import com.example.pharmalink.data.viewmodel.ViewModelFactory
 import com.example.pharmalink.ui.components.TopBar
 import com.example.pharmalink.ui.home.MainPage
 import com.example.pharmalink.ui.login.Login
@@ -27,6 +32,16 @@ fun AppNav(showTopBar : Boolean = true){
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = backStackEntry?.destination?.route
+
+    val repository = MedicationImpl(
+        apiService = InternetService.medicationApiService,
+        mapper = InternetService.medicationMapper
+    )
+
+    // view model factory ? with data injection
+    val factory = ViewModelFactory(repository)
+
+    val viewModel : MedicationViewModel = viewModel(factory = factory)
 
     Scaffold(
         containerColor = colorResource(R.color.white),
@@ -54,11 +69,18 @@ fun AppNav(showTopBar : Boolean = true){
                     Login(onClick = { navController.navigate("mainPage") })
                 }
                 composable("mainPage") {
-                    MainPage(true, navController)
+                    MainPage(
+                        true,
+                        navController,
+                        viewModel)
                 }
 
                 composable("medicationPage") {
-                    MedicationPage()
+                    MedicationPage(
+                        {
+                            viewModel.askGemini(it)
+                        }
+                    )
                 }
             }
         }

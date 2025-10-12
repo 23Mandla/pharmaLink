@@ -13,4 +13,8 @@ class MedicationImpl(
         val response = apiService.getMedications(apiKey)
         return response.map { mapper.mapToDomain(it) }
     }
+
+    override suspend fun askGeminiQuestion(question: String) {
+        TODO("Not yet implemented")
+    }
 }

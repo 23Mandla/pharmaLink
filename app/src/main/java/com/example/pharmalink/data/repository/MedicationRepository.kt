@@ -5,4 +5,5 @@ import com.example.pharmalink.data.dto.MedicationDTO
 
 interface MedicationRepository {
     suspend fun getMedication(apiKey: String): List<Medication>
+    suspend fun askGeminiQuestion(question: String)
 }

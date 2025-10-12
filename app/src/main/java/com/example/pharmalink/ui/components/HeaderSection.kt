@@ -3,7 +3,10 @@ package com.example.pharmalink.ui.components
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -11,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
@@ -26,34 +30,71 @@ fun HeaderSection(topBar: @Composable () -> Unit = {}){
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding()
-            .padding(10.dp),
+            .padding(13.dp),
 
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(R.color.lightNavy)
+            containerColor = colorResource(R.color.mediumNavy)
         ),
         shape = RoundedCornerShape(16.dp),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp, bottom = 30.dp, top = 12.dp),
+                .padding(bottom = 30.dp, top = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
 
         ) {
-            Text(
-                "Today",
-                fontSize = 20.sp,
-                color = Color.White
-            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(70.dp)
+                        .background(
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                            shape = CircleShape
 
-            Spacer(modifier = Modifier.height(8.dp))
+                        )
+                        .clickable {
+                            //TODO open calendar
+                        },
+                    contentAlignment = Alignment.Center
+                ){
+                    Icon(
+                        painter = painterResource(R.drawable.baseline_calendar_month_24),
+                        contentDescription = "Calendar",
+                        tint = Color.White
+                    )
 
-            Text(
-                today(),
-                fontSize = 16.sp,
-                color = Color.White,
 
-            )
+                }
+
+                Column(
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+
+                )
+                {
+
+                    Text(
+                        "Today's Date", //TODO dynamic based on selected date
+                        fontSize = 16.sp,
+                        color = Color.White
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        today(),
+                        fontSize = 20.sp,
+                        color = Color.White,
+
+                        )
+                }
+            }
         }
     }
 }
@@ -62,7 +103,7 @@ fun HeaderSection(topBar: @Composable () -> Unit = {}){
 @RequiresApi(Build.VERSION_CODES.O)
 fun today(): String {
     val today = LocalDate.now()
-    val date = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    val date = DateTimeFormatter.ofPattern("EEEE, d MMMM")
 
     return today.format(date)
 

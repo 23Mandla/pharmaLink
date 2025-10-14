@@ -40,58 +40,53 @@ fun MedSection(
 
     ) {
 
-        //TODO NB in dev
-
        Row(
            modifier = Modifier
                .fillMaxWidth()
-               .padding(vertical = 10.dp),
+               ,
            horizontalArrangement = Arrangement.SpaceEvenly,
 
        ) {
            repeat(3){
-               //TODO get med card over here
-               Card(
-                   modifier = Modifier
-                       .size(90.dp)
-                       .clickable {
-                          //TODO med card is clickable
-                       },
-                   colors = CardDefaults.cardColors(
-                       containerColor = Color.White
-                   ),
-                   border = CardDefaults.outlinedCardBorder(),
-               ) {
 
-               }
+               MedCard(
+                   context,
+                   Medication(
+                       "Every evening",
+                       1,
+                       "Diazepam",
+                       "Dev",
+                       731,
+                       "10 mg",
+                   ),
+                   {
+                       navController?.navigate("medicationPage")
+                   }
+               )
            }
 
        }
 
-        Spacer(modifier = Modifier.height(2.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 10.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
 
             ) {
             repeat(3){
-                //TODO get med card over here
-                Card(
-                    modifier = Modifier
-                        .size(95.dp)
-                        .clickable {
-                            //TODO med card is clickable
-                        },
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color.White
-                    ),
-                    border = CardDefaults.outlinedCardBorder(),
-                ) {
-
-                }
+                MedCard(
+                    context,
+                    Medication(
+                        "Every evening",
+                        1,
+                        "Diazepam",
+                        "Dev",
+                        731,
+                        "10 mg"
+                    )
+                )
             }
         }
     }

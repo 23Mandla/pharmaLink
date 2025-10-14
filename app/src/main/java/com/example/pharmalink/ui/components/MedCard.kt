@@ -22,7 +22,7 @@ import com.example.pharmalink.data.dataclass.Medication
 fun MedCard(context: Context, medication: Medication, onClick: () -> Unit = {}){
     Card (
         modifier = Modifier
-            .fillMaxWidth()
+            .size(92.dp)
             .clickable {
                 onClick()
             },
@@ -32,45 +32,6 @@ fun MedCard(context: Context, medication: Medication, onClick: () -> Unit = {}){
         border = CardDefaults.outlinedCardBorder(),
     ) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .wrapContentHeight()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.pill_color),
-                    contentDescription = "pill",
-                    modifier = Modifier
-                        .size(40.dp)
-
-                )
-
-                Text(
-                    "09:00 AM",
-                    fontSize = 14.sp
-                )
-            }
-
-            Spacer(modifier = Modifier.height(7.dp))
-
-            Text(
-                medication.medicationName,
-                fontSize = 18.sp
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                medication.dosage
-            )
-        }
     }
 }
 

@@ -35,7 +35,7 @@ fun WeeklyCalendar() {
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 2.dp, horizontal = 10.dp),
+            .padding(horizontal = 13.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
 
     ) {

@@ -18,6 +18,8 @@ import com.example.pharmalink.data.repository.MedicationImpl
 import com.example.pharmalink.data.retroClient.InternetService
 import com.example.pharmalink.data.viewmodel.MedicationViewModel
 import com.example.pharmalink.data.viewmodel.ViewModelFactory
+import com.example.pharmalink.ui.components.CategHeader
+import com.example.pharmalink.ui.components.Categories
 import com.example.pharmalink.ui.components.HeaderSection
 import com.example.pharmalink.ui.components.MedSection
 import com.example.pharmalink.ui.components.MedsHeader
@@ -28,7 +30,7 @@ import com.example.pharmalink.ui.components.WeeklyCalendar
 fun MainPage(
     bool: Boolean,
     navController: NavHostController? = null,
-    viewModel: MedicationViewModel = viewModel()
+    viewModel: MedicationViewModel
     ) {
 
     val medicationState = viewModel.medicationState.collectAsStateWithLifecycle()
@@ -48,7 +50,12 @@ fun MainPage(
             navController = navController
             )
         }
-
+        item {
+            CategHeader()
+        }
+        item{
+            Categories()
+        }
     }
 }
 
@@ -58,6 +65,7 @@ fun MainPage(
 fun PreviewMainPage() {
     MainPage(
         false,
-        navController = NavHostController(LocalContext.current))
-
+        navController = NavHostController(LocalContext.current),
+        viewModel = viewModel()
+    )
 }

@@ -16,12 +16,17 @@ import com.example.pharmalink.R
 @Composable
 @Preview
 fun MedsHeader(){
+    //TODO note code repetition: can be one header with CategHeader
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding()
             .padding(
-                vertical = 2.dp, horizontal = 10.dp
+                top = 13.dp,
+                bottom = 1.dp,
+                start = 13.dp,
+                end = 13.dp
+
             )
             .background(Color.White),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -30,7 +35,7 @@ fun MedsHeader(){
     ) {
         Text(
             "Today's medication",
-            fontSize = 20.sp,
+            fontSize = 19.sp,
 
         )
 
@@ -42,7 +47,7 @@ fun MedsHeader(){
             Icon(
                 painter = painterResource(R.drawable.filter),
                 contentDescription = "filter",
-                modifier = Modifier.size(20.dp)
+                modifier = Modifier.size(22.dp)
             )
         }
     }

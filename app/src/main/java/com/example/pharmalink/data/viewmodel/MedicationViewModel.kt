@@ -35,6 +35,41 @@ class MedicationViewModel(
         getMedication()
     }
 
+    //For testing purposes
+    private fun getHardCodedMedication(){
+        _medicationState.update {
+            it.copy(
+                isLoading = false,
+                medication = listOf(
+                    Medication(
+                        "Every evening",
+                        1,
+                        "Diazepam",
+                        "Dev",
+                        731,
+                        "10 mg"
+                    ),
+                    Medication(
+                        "4 times a day",
+                        1,
+                        "Paracetamol",
+                        "Dev",
+                        731,
+                        "10 mg"
+                    ),
+                    Medication(
+                        "Every evening",
+                        1,
+                        "Ibuprofen",
+                        "Dev",
+                        731,
+                        "10 mg"
+                    )
+                )
+            )
+        }
+    }
+
     private fun getMedication(){
         viewModelScope.launch {
             _medicationState.update { it.copy(isLoading = true) }

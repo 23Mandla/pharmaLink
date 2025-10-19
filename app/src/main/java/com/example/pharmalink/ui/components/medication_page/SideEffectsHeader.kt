@@ -25,49 +25,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pharmalink.R
+import okhttp3.Headers
 
 @Composable
 @Preview
-fun SideEffectsHeader(){
+fun SideEffectsHeader(headers: String = ""){
     // another repetition
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .statusBarsPadding()
+            .padding(top = 5.dp)
             .background(Color.White),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
 
         ) {
         Text(
-            "Side effects",
-            fontSize = 19.sp,
+            headers, // check for missing header
+            fontSize = 16.sp,
 
             )
-
-        Button(
-            onClick = { /*TODO got to symptoms page**/ },
-            modifier = Modifier
-                .testTag("symptomsPage")
-                .border(
-                    width = 1.dp,
-                    color = Color.Gray,
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .height(30.dp),
-            shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.White,
-                contentColor = Color.Black
-            )
-
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.baseline_arrow_right_alt_24),
-                contentDescription = "symptoms",
-
-            )
-
-        }
     }
 }

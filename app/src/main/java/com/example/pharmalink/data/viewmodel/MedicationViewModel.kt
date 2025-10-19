@@ -88,9 +88,32 @@ class MedicationViewModel(
     }
 
     fun askGemini(question: String) {
+        val geminiContext = """
+            You are an assistant in a health app.
+            Always provide accurate and short answers.
+        """.trimIndent()
         viewModelScope.launch {
-            val response = model.generateContent(question)
+            val response = model.generateContent("""
+                $geminiContext : $question
+            """.trimIndent())
             Log.d("TAG", "askGemini: ${response.text}")
         }
+    }
+
+    fun askSideEffects(): List<String> {
+
+        val geminiContext = """
+            You are an assistant in a health app.
+            Always provide accurate and short answers.
+        """.trimIndent()
+        viewModelScope.launch {
+            val response = model.generateContent("""
+                $geminiContext : List 4 common side effects of Paracetamol.
+                                 Return them comma-separated
+            """.trimIndent())
+            Log.d("TAG", "askGemini: ${response.text}")
+        }
+
+        return emptyList()
     }
 }

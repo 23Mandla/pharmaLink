@@ -15,19 +15,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.*
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
 import com.example.pharmalink.data.dataclass.Medication
-import com.example.pharmalink.ui.components.medication_page.Medication_details
-import com.example.pharmalink.ui.components.medication_page.SideEffectsHeader
+import com.example.pharmalink.ui.components.medication_page.*
 
 @Composable
 @Preview
@@ -35,6 +30,14 @@ fun MedicationPage(onSendMessage : (String) -> Unit = {}){
     var message by remember {
         mutableStateOf("")
     }
+    
+    //TODO remove dummy times and add logic
+    val times = listOf(
+        "10:00 AM",
+        "14:00 PM",
+        "18:00 PM",
+    )
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -77,21 +80,78 @@ fun MedicationPage(onSendMessage : (String) -> Unit = {}){
                 )
             }
 
+            // schedule section
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 13.dp, vertical = 5.dp)
+
+            ) {
+                SideEffectsHeader("Schedule") //TODO change name
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 13.dp),
+                verticalAlignment = Alignment.CenterVertically
+
+            ) {
+               Icon(
+                   painter = painterResource(R.drawable.baseline_star_24),
+                   contentDescription = "Schedule",
+                   tint = Color.Yellow,
+                   modifier = Modifier
+                       .size(20.dp)
+
+               )
+
+                Text(
+                    "After meal",
+                    modifier = Modifier
+                        .padding(start = 2.dp),
+                    fontSize = 14.sp,
+                    color = Color.Gray
+
+                )
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 13.dp, vertical = 5.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+
+            ) {
+
+                times.forEach {
+                    MedicationSchedule(it)
+                }
+
+            }
+
+            // side effects section
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(13.dp)
 
             ) {
-                SideEffectsHeader()
+                SideEffectsHeader("Side effects") //TODO change name
             }
-        }
 
+            SideEffectsCard(listOf(
+                "Nausea",
+                "Stomach pain",
+                "Vomiting",
+                "Constipation")
+            )
+        }
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(13.dp)
+                .padding(horizontal = 13.dp, vertical = 15.dp)
                 .align(Alignment.BottomCenter),
             verticalAlignment = Alignment.CenterVertically
         ) {

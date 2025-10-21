@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,7 +27,9 @@ fun MedicationSchedule(time: String = "10:00 AM"){
     // another repetition
     Card(
         modifier = Modifier
-            .size(60.dp)
+            .height(30.dp)
+            .width(65.dp),
+        shape = RoundedCornerShape(5.dp)
 
     ){
         Row(
@@ -45,12 +48,9 @@ fun MedicationSchedule(time: String = "10:00 AM"){
             Text(
                 time,
                 color = Color.Black,
-                modifier = Modifier.padding(top = 8.dp),
-
                 fontSize = 10.sp,
                 fontWeight = MaterialTheme.typography.titleMedium.fontWeight
             )
-
         }
     }
 }

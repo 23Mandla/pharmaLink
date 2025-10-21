@@ -34,15 +34,16 @@ fun SideEffectsHeader(headers: String = ""){
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 5.dp)
+            .padding(top = 8.dp)
             .background(Color.White),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
 
         ) {
         Text(
-            headers, // check for missing header
+            headers, // check for missing header = null
             fontSize = 16.sp,
+            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
 
             )
     }

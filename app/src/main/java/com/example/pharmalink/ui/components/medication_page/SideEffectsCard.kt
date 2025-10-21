@@ -44,7 +44,7 @@ fun SideEffectsCard(sideEffects: List<String> = emptyList()){
             .padding(horizontal = 13.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(R.color.lighterNavy)
+            containerColor = colorResource(R.color.lightGrey)
         )
     ) {
         Row(
@@ -67,7 +67,7 @@ fun SideEffectsCard(sideEffects: List<String> = emptyList()){
                 modifier = Modifier
                     .padding(start = 5.dp),
                 fontSize = 10.sp,
-                color = Color.White
+                color = Color.Black
 
             )
         }
@@ -78,7 +78,7 @@ fun SideEffectsCard(sideEffects: List<String> = emptyList()){
                 .padding(horizontal = 13.dp),
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = Color.Black
 
             )
 
@@ -89,27 +89,42 @@ fun SideEffectsCard(sideEffects: List<String> = emptyList()){
             horizontalAlignment = Alignment.Start,
 
         ) {
-            sideEffects.forEach {
-                effect ->
+            if(sideEffects.isNotEmpty()){
+                sideEffects.forEach {
+                        effect ->
                     Row(
-                       verticalAlignment = Alignment.CenterVertically,
+                        verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .padding(1.dp)
                     ) {
-                        Text(
-                            text = ". ",
-                            fontSize = 18.sp,
-                            color = Color.White
+                        Box(
+                            modifier = Modifier
+                                .size(12.dp)
+                                .padding(end = 4.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                                    shape = CircleShape
 
-                        )
+                                )
+                        ){
+
+                        }
                         Text(
                             text = effect,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = Color.White
+                            color = Color.Black
 
                         )
-
                     }
+                }
+            }else{
+                Text(
+                    text = "No side effects found",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Blue,
+                    modifier = Modifier
+                        .padding(top = 10.dp)
+                )
             }
         }
 
@@ -123,7 +138,7 @@ fun SideEffectsCard(sideEffects: List<String> = emptyList()){
             Text(
                 "Intelligent insights and more...",
                 fontSize = 14.sp,
-                color = Color.White
+                color = Color.Black
             )
 
             IconButton (

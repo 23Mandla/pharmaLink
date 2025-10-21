@@ -1,8 +1,10 @@
 package com.example.pharmalink.ui.medication
 
 import android.content.res.Resources
+import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -16,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.*
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +29,10 @@ import com.example.pharmalink.ui.components.medication_page.*
 
 @Composable
 @Preview
-fun MedicationPage(onSendMessage : (String) -> Unit = {}){
+fun MedicationPage(
+    onSendMessage : (String) -> Unit = {},
+    sideEffects: List<String> = emptyList()
+){
     var message by remember {
         mutableStateOf("")
     }
@@ -55,14 +61,38 @@ fun MedicationPage(onSendMessage : (String) -> Unit = {}){
                     .fillMaxWidth()
 
                     .background(colorResource(R.color.mediumNavy)),
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
+                IconButton(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
+                        contentDescription = "Back",
+                    )
+
+                }
                 Image(
                     painter = painterResource(R.drawable.medication),
                     contentDescription = "Medication",
                     modifier = Modifier
-                        .size(70.dp)
+                        .size(80.dp)
+                        .padding(10.dp)
                 )
+
+                IconButton(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.baseline_arrow_forward_ios_24),
+                        contentDescription = "Back",
+                    )
+                }
             }
 
             Row(
@@ -100,7 +130,7 @@ fun MedicationPage(onSendMessage : (String) -> Unit = {}){
                Icon(
                    painter = painterResource(R.drawable.baseline_star_24),
                    contentDescription = "Schedule",
-                   tint = Color.Yellow,
+                   tint = colorResource(R.color.darkYello),
                    modifier = Modifier
                        .size(20.dp)
 
@@ -120,7 +150,7 @@ fun MedicationPage(onSendMessage : (String) -> Unit = {}){
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 13.dp, vertical = 5.dp),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                horizontalArrangement = Arrangement.spacedBy(13.dp)
 
             ) {
 
@@ -140,12 +170,7 @@ fun MedicationPage(onSendMessage : (String) -> Unit = {}){
                 SideEffectsHeader("Side effects") //TODO change name
             }
 
-            SideEffectsCard(listOf(
-                "Nausea",
-                "Stomach pain",
-                "Vomiting",
-                "Constipation")
-            )
+            SideEffectsCard(sideEffects)
         }
 
         Row(

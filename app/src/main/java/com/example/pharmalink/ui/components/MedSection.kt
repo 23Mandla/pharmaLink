@@ -1,9 +1,11 @@
 package com.example.pharmalink.ui.components
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -19,11 +21,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavHostController
 import com.example.pharmalink.data.dataclass.Medication
+import com.google.gson.Gson
 
 @Composable
 @Preview
 fun MedSection(
-    medications: List<Medication> = emptyList(),
+    sideEffects: List<String> = emptyList(),
     navController: NavHostController? = null,
     onMedClick: (Medication) -> Unit = {}
 ){
@@ -34,20 +37,23 @@ fun MedSection(
 
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 13.dp)
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
 
     ) {
 
-       Row(
+        // fix this this
+       LazyRow(
            modifier = Modifier
                .fillMaxWidth()
                ,
-           horizontalArrangement = Arrangement.SpaceEvenly,
+           horizontalArrangement = Arrangement.spacedBy(10.dp),
 
        ) {
-           repeat(3){
+           val sideEffectsJson = Uri.encode(Gson().toJson(sideEffects))
+           items(3){
 
                MedCard(
                    context,
@@ -60,22 +66,21 @@ fun MedSection(
                        "10 mg",
                    ),
                    {
-                       navController?.navigate("medicationPage")
+                       navController?.navigate("medicationPage/$sideEffectsJson")
                    }
                )
            }
-
        }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
-        Row(
+        LazyRow(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
 
             ) {
-            repeat(3){
+            items(3){
                 MedCard(
                     context,
                     Medication(

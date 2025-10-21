@@ -1,6 +1,7 @@
 package com.example.pharmalink.navigation
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,6 +27,7 @@ import com.example.pharmalink.ui.components.TopBar
 import com.example.pharmalink.ui.home.MainPage
 import com.example.pharmalink.ui.login.Login
 import com.example.pharmalink.ui.medication.MedicationPage
+import com.google.gson.Gson
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,6 +41,7 @@ fun AppNav(showTopBar : Boolean = true){
         apiService = InternetService.medicationApiService,
         mapper = InternetService.medicationMapper
     )
+    //TODO Check security
 
     // view model factory ? with data injection
     val factory = ViewModelFactory(repository)
@@ -78,14 +81,14 @@ fun AppNav(showTopBar : Boolean = true){
                 }
 
                 composable(
-                    "medicationPage",
-                    //arguments = listOf(navArgument("medicationId"){type = NavType.StringType})
-                    ) {
+                    "medicationPage/{sideEffects}",
+                    arguments = listOf(navArgument("sideEffects"){type = NavType.StringType})
+                    ) { backStackEntry ->
+                        val sideEffectsJson = backStackEntry.arguments?.getString("sideEffects")
+                        val sideEffects = Gson().fromJson(sideEffectsJson, Array<String>::class.java).toList()
 
                     MedicationPage(
-                        {
-                            viewModel.askGemini(it)
-                        }
+                        sideEffects = sideEffects
                     )
                 }
             }

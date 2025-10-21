@@ -46,7 +46,7 @@ fun MainPage(
         item { WeeklyCalendar() }
         item { MedsHeader() }
         item { MedSection(
-            medicationState.value.medication,
+            medicationState.value.geminiResponse,
             navController = navController
             )
         }

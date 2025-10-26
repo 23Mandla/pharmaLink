@@ -22,8 +22,8 @@ fun MedsHeader(){
             .fillMaxWidth()
             .statusBarsPadding()
             .padding(
-                top = 13.dp,
-                bottom = 1.dp,
+                top = 15.dp,
+                bottom = 8.dp,
                 start = 13.dp,
                 end = 13.dp
 

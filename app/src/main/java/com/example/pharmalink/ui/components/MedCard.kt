@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,10 +30,11 @@ fun MedCard(
 ){
     Card (
         modifier = Modifier
-            .width(120.dp)
             .clickable {
                 onClick()
-            },
+            }
+            .wrapContentSize()
+            .padding(start = 12.dp, top = 12.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
@@ -43,7 +45,7 @@ fun MedCard(
             "Paracetamol",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 5.dp, start = 10.dp),
+                .padding(top = 5.dp, start = 10.dp, end = 5.dp),
             fontWeight = MaterialTheme.typography.titleMedium.fontWeight
 
         )
@@ -57,21 +59,26 @@ fun MedCard(
            Text(
                "500 mg",
                modifier = Modifier
-                   .padding(start = 10.dp),
+                   .padding(start = 10.dp, end = 16.dp),
                fontSize = 12.sp
            )
-//           Image(
-//               painter = painterResource(R.drawable.pill_color),
-//               contentDescription = "Medication",
-//               modifier = Modifier
-//                   .size(35.dp)
-//                   .padding(start = 8.dp),
-//               alignment = Alignment.Center
-//           )
-
+           Image(
+               painter = painterResource(R.drawable.capsule),
+               contentDescription = "Medication",
+               modifier = Modifier
+                   .size(28.dp)
+                   .padding(start = 8.dp),
+               alignment = Alignment.Center
+           )
        }
 
-
+        Text(
+            "10 AM",
+            modifier = Modifier
+                .padding(start = 10.dp, bottom = 8.dp),
+            fontSize = 12.sp,
+            color = colorResource(R.color.darkGreen)
+        )
     }
 }
 

@@ -2,6 +2,8 @@ package com.example.pharmalink.ui.login
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -34,162 +36,200 @@ fun Login(onClick: () -> Unit = {}){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
-        verticalArrangement = Arrangement.Center,
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        Text(
-            text = "Login",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .testTag("loginText"),
-
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        TextField(
-            value = email,
-            onValueChange = {
-                email = it
-            },
-            label = { Text(
-                emailError.ifEmpty { "Email" },
-                color = if (emailError.isNotEmpty()) Color.Red else Color.Unspecified,
-                modifier = Modifier.testTag("emailLabel")
-            ) },
-            leadingIcon = {
-                Icon(
-                    painter = painterResource(R.drawable.baseline_email_24),
-                    contentDescription = "Email Icon"
-                )
-            },
-            shape = RoundedCornerShape(8.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 23.dp)
-                .testTag("emailField")
-                .semantics {
-                    contentDescription = ""
-                    text = AnnotatedString(email)
-                },
-            colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            )
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        TextField(
-            value = password,
-            onValueChange = {
-                password = it
-            },
-            label = { Text(
-                passwordError.ifEmpty { "Password" },
-                color = if (passwordError.isNotEmpty()) Color.Red else Color.Unspecified,
-                modifier = Modifier.testTag("passwordLabel")
-            ) },
-            leadingIcon = {
-                Icon(
-                    painter = painterResource(R.drawable.baseline_lock_24),
-                    contentDescription = "Password Icon"
-                )
-            },
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            trailingIcon = {
-                val image = if (passwordVisible) painterResource(R.drawable.baseline_visibility_24) else painterResource(R.drawable.baseline_visibility_off_24)
-                IconButton (
-                    onClick = { passwordVisible = !passwordVisible } ,
-                    modifier = Modifier
-                            .testTag("passwordToggle")
-                ) {
-                    Icon(
-                        painter = image,
-                        contentDescription = "Password Toggle",
-                    )
-                }
-
-            },
-            shape = RoundedCornerShape(8.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 23.dp)
-                .testTag("passwordField"),
-            colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent)
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
+    ){
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 23.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+
         ) {
-            Text(
-                text = "Remember Me",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold
 
-            )
+            Box(
+                modifier = Modifier
+                    .size(150.dp)
+                    .background(
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                        shape = CircleShape
 
-            Text(
-                text = "Forgot Password?",
-                color = Color.Blue,
-                modifier = Modifier.clickable{
-                    //TODO forgot password logic
-                },
-                fontSize = 14.sp,
+                    ),
 
-            )
+                contentAlignment = Alignment.Center
+            ){
+
+
+            }
+
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                emailError = if (email.isBlank()) "Email is required!" else ""
-                passwordError = if (password.isBlank()) "Password is required!" else ""
-                if(emailError.isEmpty() && passwordError.isEmpty()) {
-                    onClick()
-                }
-
-            },
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 23.dp)
-                .testTag("loginButton"),
-            shape = RoundedCornerShape(8.dp),
-        ) {
+                .fillMaxSize()
+                .background(Color.White),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
             Text(
                 text = "Login",
-                fontSize = 16.sp,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .testTag("loginText"),
 
-            )
-        }
+                )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Row {
-            Text(text = "Don't have an account ?")
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "Sign Up",
-                modifier = Modifier.clickable {
-                    //TODO handle sign up logic
+            TextField(
+                value = email,
+                onValueChange = {
+                    email = it
                 },
-                color = Color.Blue
+                label = { Text(
+                    emailError.ifEmpty { "Email" },
+                    color = if (emailError.isNotEmpty()) Color.Red else Color.Unspecified,
+                    modifier = Modifier.testTag("emailLabel")
+                ) },
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.baseline_email_24),
+                        contentDescription = "Email Icon"
+                    )
+                },
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 23.dp)
+                    .testTag("emailField")
+                    .semantics {
+                        contentDescription = ""
+                        text = AnnotatedString(email)
+                    },
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
+                    unfocusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                )
             )
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = password,
+                onValueChange = {
+                    password = it
+                },
+                label = { Text(
+                    passwordError.ifEmpty { "Password" },
+                    color = if (passwordError.isNotEmpty()) Color.Red else Color.Unspecified,
+                    modifier = Modifier.testTag("passwordLabel")
+                ) },
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.baseline_lock_24),
+                        contentDescription = "Password Icon"
+                    )
+                },
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val image = if (passwordVisible) painterResource(R.drawable.baseline_visibility_24) else painterResource(R.drawable.baseline_visibility_off_24)
+                    IconButton (
+                        onClick = { passwordVisible = !passwordVisible } ,
+                        modifier = Modifier
+                            .testTag("passwordToggle")
+                    ) {
+                        Icon(
+                            painter = image,
+                            contentDescription = "Password Toggle",
+                        )
+                    }
+
+                },
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 23.dp)
+                    .testTag("passwordField"),
+
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
+                    unfocusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                )
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 23.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Remember Me",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+
+                )
+
+                Text(
+                    text = "Forgot Password?",
+                    color = Color.Blue,
+                    modifier = Modifier.clickable{
+                        //TODO forgot password logic
+                    },
+                    fontSize = 14.sp,
+
+                    )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    emailError = if (email.isBlank()) "Email is required!" else ""
+                    passwordError = if (password.isBlank()) "Password is required!" else ""
+                    if(emailError.isEmpty() && passwordError.isEmpty()) {
+                        onClick()
+                    }
+
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 23.dp)
+                    .testTag("loginButton"),
+                shape = RoundedCornerShape(8.dp),
+            ) {
+                Text(
+                    text = "Login",
+                    fontSize = 16.sp,
+
+                    )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row {
+                Text(text = "Don't have an account ?")
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "Sign Up",
+                    modifier = Modifier.clickable {
+                        //TODO handle sign up logic
+                    },
+                    color = Color.Blue
+                )
+
+            }
         }
+
+
+
     }
 }

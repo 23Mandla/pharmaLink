@@ -1,7 +1,6 @@
 package com.example.pharmalink.navigation
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -23,10 +23,12 @@ import com.example.pharmalink.data.repository.MedicationImpl
 import com.example.pharmalink.data.retroClient.InternetService
 import com.example.pharmalink.data.viewmodel.MedicationViewModel
 import com.example.pharmalink.data.viewmodel.ViewModelFactory
+import com.example.pharmalink.ui.components.BottomBar
 import com.example.pharmalink.ui.components.TopBar
 import com.example.pharmalink.ui.home.MainPage
 import com.example.pharmalink.ui.login.Login
 import com.example.pharmalink.ui.medication.MedicationPage
+import com.example.pharmalink.utils.bottomNav.NavItems
 import com.google.gson.Gson
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -56,6 +58,11 @@ fun AppNav(showTopBar : Boolean = true){
                 TopBar(
                     scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
                 )
+            }
+        },
+        bottomBar = {
+            if(currentScreen == "mainPage" && showTopBar){
+                BottomBar()
             }
         }
     ) { innerPadding ->

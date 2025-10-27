@@ -42,11 +42,12 @@ fun MedCard(
     ) {
         
         Text(
-            "Paracetamol",
+            "Diazepam",
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 5.dp, start = 10.dp, end = 5.dp),
-            fontWeight = MaterialTheme.typography.titleMedium.fontWeight
+            fontWeight = MaterialTheme.typography.titleMedium.fontWeight,
+            fontSize = 15.sp
 
         )
 
@@ -66,8 +67,8 @@ fun MedCard(
                painter = painterResource(R.drawable.capsule),
                contentDescription = "Medication",
                modifier = Modifier
-                   .size(28.dp)
-                   .padding(start = 8.dp),
+                   .size(25.dp)
+                   .padding(end = 10.dp),
                alignment = Alignment.Center
            )
        }

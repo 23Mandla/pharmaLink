@@ -13,6 +13,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,14 +42,15 @@ fun MedSection(
     val context = LocalContext.current
 
     // TODO prioritize meds
-    Column (
+    Card (
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 13.dp)
-            .background(Color.White)
             .border(1.dp, Color.LightGray, RoundedCornerShape(16.dp)),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly,
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+        )
 
     ) {
 

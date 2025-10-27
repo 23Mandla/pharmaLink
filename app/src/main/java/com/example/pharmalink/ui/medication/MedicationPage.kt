@@ -102,7 +102,7 @@ fun MedicationPage(
                     Medication(
                         "Every evening",
                         2,
-                        "Paracetamol",
+                        "Diazepam",
                         "Pharmacist",
                         22,
                         strength = "500 mg",

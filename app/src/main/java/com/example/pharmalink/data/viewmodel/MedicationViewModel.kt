@@ -115,7 +115,7 @@ class MedicationViewModel(
 
         val response = model.generateContent("""
             $geminiContext
-             List 4 common side effects of Paracetamol.
+             List 4 common side effects of Diazepam.
              Return them comma-separated
         """.trimIndent())
         Log.d("TAG", "askGemini: ${response.text}")

@@ -91,10 +91,10 @@ fun MedSection(
                     Medication(
                         "Every evening",
                         1,
-                        "Diazepam",
+                        "Paracetamol",
                         "Dev",
                         731,
-                        "10 mg"
+                        "500 mg"
                     )
                 )
             }

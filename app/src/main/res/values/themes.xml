@@ -2,7 +2,8 @@
 <resources>
 
     <style name="SplashTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/lightNavy</item>
+        <item name="windowSplashScreenBackground">@color/lightBlue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/l_logo</item>
         <item name="windowSplashScreenAnimationDuration">2000</item>
         <item name="postSplashScreenTheme">@style/Theme.PharmaLink</item>
     </style>

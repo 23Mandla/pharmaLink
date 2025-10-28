@@ -11,6 +11,7 @@ import androidx.compose.ui.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -19,6 +20,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
@@ -38,27 +40,46 @@ fun Login(onClick: () -> Unit = {}){
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.SpaceEvenly,
-        horizontalAlignment = Alignment.CenterHorizontally
+
     ){
         Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
 
         ) {
 
-            Box(
+           Image(
+               painter = painterResource(R.drawable.l_logo),
+               contentDescription = "Logo",
+               modifier = Modifier
+           )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(0.4f)
+                .background(
+                    color = colorResource(R.color.lightNavy),
+                    shape = RoundedCornerShape(
+                        topEnd = 30.dp,
+                        bottomEnd = 30.dp)
+
+                )
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+
+        ) {
+            Text(
+                text = "Login",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier
-                    .size(150.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
-                        shape = CircleShape
-
-                    ),
-
-                contentAlignment = Alignment.Center
-            ){
-
-
-            }
-
+                    .testTag("loginText"),
+                color = Color.White,
+            )
         }
 
         Column(
@@ -66,17 +87,9 @@ fun Login(onClick: () -> Unit = {}){
                 .fillMaxSize()
                 .background(Color.White),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+
             ) {
-
-            Text(
-                text = "Login",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .testTag("loginText"),
-
-                )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -108,7 +121,7 @@ fun Login(onClick: () -> Unit = {}){
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
                     unfocusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
-                    focusedIndicatorColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Black,
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent
                 )
@@ -205,6 +218,9 @@ fun Login(onClick: () -> Unit = {}){
                     .padding(vertical = 8.dp, horizontal = 23.dp)
                     .testTag("loginButton"),
                 shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+                )
             ) {
                 Text(
                     text = "Login",

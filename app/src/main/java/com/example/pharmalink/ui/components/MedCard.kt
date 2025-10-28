@@ -1,6 +1,7 @@
 package com.example.pharmalink.ui.components
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -40,12 +41,21 @@ fun MedCard(
         ),
         border = CardDefaults.outlinedCardBorder(),
     ) {
-        
+        val dp = if (addMedication(
+                medication.medicationName
+            ).length <= 8){
+            12.dp
+        }else{
+            5.dp
+        }
+        Log.d("padd", dp.toString())
         Text(
-            "Diazepam",
+            addMedication(
+                medication.medicationName
+            ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 5.dp, start = 10.dp, end = 5.dp),
+                .padding(top = 5.dp, start = 10.dp, end = dp),
             fontWeight = MaterialTheme.typography.titleMedium.fontWeight,
             fontSize = 15.sp
 
@@ -57,8 +67,9 @@ fun MedCard(
                .padding(vertical = 3.dp),
            verticalAlignment = Alignment.CenterVertically,
        ) {
+
            Text(
-               "500 mg",
+               medication.strength,
                modifier = Modifier
                    .padding(start = 10.dp, end = 16.dp),
                fontSize = 12.sp
@@ -81,6 +92,15 @@ fun MedCard(
             color = colorResource(R.color.darkGreen)
         )
     }
+}
+
+fun addMedication(string: String): String {
+    return (
+            if(string.length > 8){
+                string.substring(0, 8) + "..."
+            } else {
+                string
+            })
 }
 
 @Preview

@@ -27,7 +27,7 @@ fun Medication_details(medication: Medication) {
     ) {
         Text(
             text = medication.medicationName, // OOP principles. name variable easily accessible
-            color = Color.Black,
+            color = Color.White,
             fontSize = 18.sp,
             fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
 
@@ -40,7 +40,7 @@ fun Medication_details(medication: Medication) {
         ) {
             Text(
                 text = medication.strength, // OOP principles. name variable easily accessible
-                color = Color.Black,
+                color = Color.White,
                 fontSize = 16.sp,
 
             )
@@ -49,10 +49,19 @@ fun Medication_details(medication: Medication) {
 
             Text(
                 text = "Tablets", // OOP principles. name variable easily accessible
-                color = Color.Black,
+                color = Color.White,
                 fontSize = 16.sp,
 
             )
+
+            Spacer(modifier = Modifier.width(20.dp))
+
+            Text(
+                text = "25", // OOP principles. name variable easily accessible
+                color = Color.White,
+                fontSize = 16.sp,
+
+                )
         }
     }
 }

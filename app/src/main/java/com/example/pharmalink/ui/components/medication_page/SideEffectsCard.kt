@@ -23,7 +23,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -44,114 +46,139 @@ fun SideEffectsCard(sideEffects: List<String> = emptyList()){
             .padding(horizontal = 13.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(R.color.lightGrey)
+            containerColor = Color.Transparent
         )
     ) {
-        Row(
+        Box(
             modifier = Modifier
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            Color(0xFF864DFF),
+                            Color(0xFF00bf63)
+                        )
+
+                    ),
+                    shape = RoundedCornerShape(16.dp)
+                )
                 .fillMaxWidth()
-                .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            
-            Icon(
-                painter = painterResource(R.drawable.aistar),
-                contentDescription = null,
+        ){
+            Column(
                 modifier = Modifier
-                    .size(25.dp),
-                tint = Color.Yellow
-            )
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
 
-            Text(
-                "side effects provided by ai...",
-                modifier = Modifier
-                    .padding(start = 5.dp),
-                fontSize = 10.sp,
-                color = Color.Black
-
-            )
-        }
-
-        Text(
-            "Common side effects",
-            modifier = Modifier
-                .padding(horizontal = 13.dp),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
-
-            )
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 25.dp, end = 0.dp, bottom = 5.dp, top = 0.dp),
-            horizontalAlignment = Alignment.Start,
-
-        ) {
-            if(sideEffects.isNotEmpty()){
-                sideEffects.forEach {
-                        effect ->
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
+                    Icon(
+                        painter = painterResource(R.drawable.aistar),
+                        contentDescription = null,
                         modifier = Modifier
-                            .padding(1.dp)
+                            .size(25.dp),
+                        tint = Color.Blue
+                    )
+
+                    Text(
+                        "side effects provided by ai...",
+                        modifier = Modifier
+                            .padding(start = 5.dp),
+                        fontSize = 10.sp,
+                        color = Color.LightGray
+
+                    )
+                }
+
+                Text(
+                    "Common side effects",
+                    modifier = Modifier
+                        .padding(horizontal = 13.dp),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+
+                )
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 25.dp, end = 0.dp, bottom = 5.dp, top = 0.dp),
+                    horizontalAlignment = Alignment.Start,
+
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .size(12.dp)
-                                .padding(end = 4.dp)
-                                .background(
-                                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
-                                    shape = CircleShape
+                    if(sideEffects.isNotEmpty()){
+                        sideEffects.forEach {
+                                effect ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .padding(1.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(12.dp)
+                                        .padding(end = 4.dp)
+                                        .background(
+                                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                                            shape = CircleShape
+
+                                        )
+                                ){
+
+                                }
+                                Text(
+                                    text = effect,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = Color.White
 
                                 )
-                        ){
-
+                            }
                         }
+                    }else{
                         Text(
-                            text = effect,
+                            text = "No side effects found",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = Color.Black
-
+                            color = Color.Blue,
+                            modifier = Modifier
+                                .padding(top = 10.dp)
                         )
                     }
                 }
-            }else{
-                Text(
-                    text = "No side effects found",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Blue,
+
+                Row(
                     modifier = Modifier
-                        .padding(top = 10.dp)
-                )
-            }
-        }
+                        .fillMaxWidth()
+                        .padding(start = 13.dp, end = 13.dp, bottom = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ){
+                    Text(
+                        "Intelligent insights and more...",
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 13.dp, end = 13.dp, bottom = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ){
-            Text(
-                "Intelligent insights and more...",
-                fontSize = 14.sp,
-                color = Color.Black
-            )
+                    IconButton (
+                        onClick = { /*TODO intelligent page*/} ,
+                        modifier = Modifier
+                            .testTag("moreSideEffects")
+                            .background(
+                                color = Color.White.copy(alpha = 0.3f),
+                                shape = CircleShape
+                            ),
 
-            IconButton (
-                onClick = { /*TODO intelligent page*/} ,
-                modifier = Modifier
-                    .testTag("passwordToggle"),
-
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.baseline_arrow_right_alt_24),
-                    contentDescription = "Password Toggle",
-                    tint = colorResource(R.color.mediumNavy)
-                )
+                        ) {
+                        Icon(
+                            painter = painterResource(R.drawable.baseline_arrow_right_alt_24),
+                            contentDescription = "Password Toggle",
+                            tint = Color.Blue,
+                            modifier = Modifier
+                                .size(25.dp)
+                        )
+                    }
+                }
             }
         }
     }

@@ -42,7 +42,7 @@ fun SideEffectsHeader(headers: String = ""){
         ) {
         Text(
             headers, // check for missing header = null
-            fontSize = 16.sp,
+            fontSize = 17.sp,
             fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
 
             )

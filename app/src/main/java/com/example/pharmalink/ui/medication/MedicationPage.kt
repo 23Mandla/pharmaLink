@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
 import com.example.pharmalink.data.dataclass.Medication
 import com.example.pharmalink.ui.components.medication_page.*
+import com.example.pharmalink.utils.HorizontalDivider
 
 @Composable
 @Preview
@@ -56,58 +58,73 @@ fun MedicationPage(
                 .verticalScroll(rememberScrollState())
 
         ) {
-            Row(
+
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-
-                    .background(colorResource(R.color.mediumNavy)),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                IconButton(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
-                        contentDescription = "Back",
-                    )
-
-                }
-                Image(
-                    painter = painterResource(R.drawable.medication),
-                    contentDescription = "Medication",
-                    modifier = Modifier
-                        .size(80.dp)
-                        .padding(10.dp)
-                )
-
-                IconButton(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.baseline_arrow_forward_ios_24),
-                        contentDescription = "Back",
-                    )
-                }
-            }
-
-            Row(
+                    .background(colorResource(R.color.mediumNavy))
 
             ) {
-                Medication_details(
-                    Medication(
-                        "Every evening",
-                        2,
-                        "Diazepam",
-                        "Pharmacist",
-                        22,
-                        strength = "500 mg",
+                Row(
+
+                ) {
+                    Medication_details(
+                        Medication(
+                            "Every evening",
+                            2,
+                            "Diazepam",
+                            "Pharmacist",
+                            22,
+                            strength = "500 mg",
+                        )
                     )
+                }
+
+                androidx.compose.material3.HorizontalDivider(
+                    Modifier
+                        .fillMaxWidth(0.8f)
+                        .padding(top = 2.dp, start = 13.dp),
+                    DividerDefaults.Thickness,
+                    DividerDefaults.color
                 )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(
+                        onClick = { /*TODO*/ },
+                        modifier = Modifier
+
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
+
+                    }
+                    Image(
+                        painter = painterResource(R.drawable.medication),
+                        contentDescription = "Medication",
+                        modifier = Modifier
+                            .size(80.dp)
+                            .padding(10.dp)
+                    )
+
+                    IconButton(
+                        onClick = { /*TODO*/ },
+                        modifier = Modifier
+
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.baseline_arrow_forward_ios_24),
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
+                    }
+                }
             }
 
             // schedule section
@@ -171,7 +188,21 @@ fun MedicationPage(
             }
 
             SideEffectsCard(sideEffects)
+
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(13.dp)
+
+            ) {
+                SideEffectsHeader("Contraindications")
+            }
+
+            ContraIndications()
         }
+
+
 
         Row(
             modifier = Modifier

@@ -33,7 +33,7 @@ fun HeaderSection(topBar: @Composable () -> Unit = {}){
             .padding(13.dp),
 
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(R.color.mediumNavy)
+            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
         ),
         shape = RoundedCornerShape(16.dp),
     ) {
@@ -82,7 +82,7 @@ fun HeaderSection(topBar: @Composable () -> Unit = {}){
                     Text(
                         "Today's Date", //TODO dynamic based on selected date
                         fontSize = 16.sp,
-                        color = Color.White
+                        color = Color.Black
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -90,7 +90,7 @@ fun HeaderSection(topBar: @Composable () -> Unit = {}){
                     Text(
                         today(),
                         fontSize = 20.sp,
-                        color = Color.White,
+                        color = Color.Black,
 
                         )
                 }

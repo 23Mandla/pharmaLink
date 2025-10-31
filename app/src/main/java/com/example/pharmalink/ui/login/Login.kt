@@ -34,6 +34,7 @@ fun Login(onClick: () -> Unit = {}){
     var emailError by remember { mutableStateOf("") }
     var passwordError by remember { mutableStateOf("") }
 
+
     //TODO Move column and Row inside a box and components
     Column(
         modifier = Modifier
@@ -54,6 +55,7 @@ fun Login(onClick: () -> Unit = {}){
                painter = painterResource(R.drawable.l_logo),
                contentDescription = "Logo",
                modifier = Modifier
+                   .size(210.dp)
            )
         }
 
@@ -100,16 +102,17 @@ fun Login(onClick: () -> Unit = {}){
                 },
                 label = { Text(
                     emailError.ifEmpty { "Email" },
-                    color = if (emailError.isNotEmpty()) Color.Red else Color.Unspecified,
+                    color = if (emailError.isNotEmpty()) Color.Red else Color.Black,
                     modifier = Modifier.testTag("emailLabel")
                 ) },
                 leadingIcon = {
                     Icon(
                         painter = painterResource(R.drawable.baseline_email_24),
-                        contentDescription = "Email Icon"
+                        contentDescription = "Email Icon",
+                        tint = Color.Black
                     )
                 },
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp, horizontal = 23.dp)
@@ -119,11 +122,14 @@ fun Login(onClick: () -> Unit = {}){
                         text = AnnotatedString(email)
                     },
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
-                    unfocusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
+                    focusedContainerColor = colorResource(R.color.textFieldBackgroundColor),
+                    unfocusedContainerColor = colorResource(R.color.textFieldBackgroundColor),
                     focusedIndicatorColor = Color.Black,
                     unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    cursorColor = Color.Black
                 )
             )
 
@@ -136,13 +142,14 @@ fun Login(onClick: () -> Unit = {}){
                 },
                 label = { Text(
                     passwordError.ifEmpty { "Password" },
-                    color = if (passwordError.isNotEmpty()) Color.Red else Color.Unspecified,
+                    color = if (passwordError.isNotEmpty()) Color.Red else Color.Black,
                     modifier = Modifier.testTag("passwordLabel")
                 ) },
                 leadingIcon = {
                     Icon(
                         painter = painterResource(R.drawable.baseline_lock_24),
-                        contentDescription = "Password Icon"
+                        contentDescription = "Password Icon",
+                        tint = Color.Black
                     )
                 },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -156,22 +163,26 @@ fun Login(onClick: () -> Unit = {}){
                         Icon(
                             painter = image,
                             contentDescription = "Password Toggle",
+                            tint = Color.Black
                         )
                     }
 
                 },
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp, horizontal = 23.dp)
                     .testTag("passwordField"),
 
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
-                    unfocusedContainerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(0.4f),
-                    focusedIndicatorColor = Color.Transparent,
+                    focusedContainerColor = colorResource(R.color.textFieldBackgroundColor),
+                    unfocusedContainerColor = colorResource(R.color.textFieldBackgroundColor),
+                    focusedIndicatorColor = Color.Black,
                     unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    cursorColor = Color.Black
                 )
             )
 

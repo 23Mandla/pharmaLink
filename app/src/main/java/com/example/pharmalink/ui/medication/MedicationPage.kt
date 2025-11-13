@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -84,24 +85,26 @@ fun MedicationPage(
                         .fillMaxWidth(0.8f)
                         .padding(top = 2.dp, start = 13.dp),
                     DividerDefaults.Thickness,
-                    DividerDefaults.color
+                    color = Color.White
                 )
 
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(vertical = 5.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
+
                 ) {
                     IconButton(
                         onClick = { /*TODO*/ },
-                        modifier = Modifier
 
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.baseline_arrow_back_ios_24),
+                            painter = painterResource(R.drawable.baseline_arrow_circle_left_24),
                             contentDescription = "Back",
-                            tint = Color.White
+                            tint = colorResource(R.color.lightGrey),
+                               
                         )
 
                     }
@@ -115,13 +118,12 @@ fun MedicationPage(
 
                     IconButton(
                         onClick = { /*TODO*/ },
-                        modifier = Modifier
 
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.baseline_arrow_forward_ios_24),
+                            painter = painterResource(R.drawable.baseline_arrow_circle_right_24),
                             contentDescription = "Back",
-                            tint = Color.White
+                            tint = colorResource(R.color.lightGrey),
                         )
                     }
                 }
@@ -167,14 +169,13 @@ fun MedicationPage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 13.dp, vertical = 5.dp),
-                horizontalArrangement = Arrangement.spacedBy(13.dp)
+                horizontalArrangement = Arrangement.spacedBy(13.dp),
+                verticalAlignment = Alignment.CenterVertically
+
 
             ) {
 
-                times.forEach {
-                    MedicationSchedule(it)
-                }
-
+                MedicationSchedule()
             }
 
             // side effects section

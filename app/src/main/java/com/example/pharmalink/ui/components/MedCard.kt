@@ -48,28 +48,31 @@ fun MedCard(
             .clip(RoundedCornerShape(16.dp))
             .clickable { onClick() }
             .graphicsLayer {
-                // enables offscreen rendering so we can blend correctly
+
                 compositingStrategy = CompositingStrategy.Offscreen
-                alpha = 0.99f // required for backdrop blur
+                alpha = 0.99f
             }
             .drawWithContent {
-                // first draw the blurred backdrop behind this card
+
                 drawRect(
                     Color.White.copy(alpha = 0.3f),
                     blendMode = BlendMode.SrcOver
                 )
-                drawContent() // then draw the actual card content (kept sharp)
+                drawContent()
             }
             .background(Color.White.copy(alpha = 0.15f))
             .border(1.dp, Color.White.copy(alpha = 0.3f), RoundedCornerShape(16.dp))
             .padding(top = 13.dp),
 
     ) {
-        // inner column stays crisp, not blurred
+        // inner column
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(5.dp)
+                .background(
+                    Color.Transparent
+                )
 
         ) {
             val dp = if (addMedication(medication.medicationName).length <= 8) 12.5.dp else 5.dp
@@ -114,8 +117,6 @@ fun MedCard(
         }
     }
 }
-
-
 
 fun addMedication(string: String): String {
     return (

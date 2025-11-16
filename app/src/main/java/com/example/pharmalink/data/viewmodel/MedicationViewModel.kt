@@ -89,7 +89,6 @@ class MedicationViewModel(
                 _medicationState.update { it.copy(error = e.message ?: "Unknown error") }
 
             }
-
         }
     }
 

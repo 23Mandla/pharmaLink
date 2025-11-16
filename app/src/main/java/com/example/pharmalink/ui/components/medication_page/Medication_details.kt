@@ -29,7 +29,10 @@ fun Medication_details(medication: Medication) {
             text = medication.medicationName, // OOP principles. name variable easily accessible
             color = Color.White,
             fontSize = 18.sp,
-            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+            modifier = Modifier
+                .padding(vertical = 5.dp)
+
 
         )
 

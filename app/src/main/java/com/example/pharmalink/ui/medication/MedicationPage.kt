@@ -29,6 +29,7 @@ import com.example.pharmalink.R
 import com.example.pharmalink.data.dataclass.Medication
 import com.example.pharmalink.ui.components.medication_page.*
 import com.example.pharmalink.utils.HorizontalDivider
+import com.example.pharmalink.utils.aippGradientBackground
 
 @Composable
 @Preview
@@ -83,7 +84,7 @@ fun MedicationPage(
                 androidx.compose.material3.HorizontalDivider(
                     Modifier
                         .fillMaxWidth(0.8f)
-                        .padding(top = 2.dp, start = 13.dp),
+                        .padding(top = 2.dp, start = 13.dp, bottom = 10.dp),
                     DividerDefaults.Thickness,
                     color = Color.White
                 )
@@ -92,7 +93,7 @@ fun MedicationPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 5.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -108,13 +109,17 @@ fun MedicationPage(
                         )
 
                     }
-                    Image(
-                        painter = painterResource(R.drawable.medication),
-                        contentDescription = "Medication",
-                        modifier = Modifier
-                            .size(80.dp)
-                            .padding(10.dp)
-                    )
+
+                   Row(
+                       modifier = Modifier
+                           .size(100.dp),
+                       horizontalArrangement = Arrangement.SpaceEvenly,
+                       verticalAlignment = Alignment.CenterVertically
+
+
+                   ){
+                       MedicationPager()
+                   }
 
                     IconButton(
                         onClick = { /*TODO*/ },
@@ -165,17 +170,17 @@ fun MedicationPage(
                 )
             }
 
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 13.dp, vertical = 5.dp),
-                horizontalArrangement = Arrangement.spacedBy(13.dp),
-                verticalAlignment = Alignment.CenterVertically
-
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
 
             ) {
 
                 MedicationSchedule()
+                MedicationScheduleTimes("10:00 AM")
             }
 
             // side effects section
@@ -210,27 +215,28 @@ fun MedicationPage(
                 .fillMaxWidth()
                 .padding(horizontal = 13.dp, vertical = 15.dp)
                 .align(Alignment.BottomCenter),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
         ) {
-            OutlinedTextField(
-                modifier = Modifier
-                    .weight(1f),
-                value = message,
-                onValueChange = {
-                    message = it
-                },
-                label = { Text("Enter text") },
-                shape = RoundedCornerShape(8.dp)
-            )
-
-            Spacer(modifier = Modifier.width(8.dp))
+//            OutlinedTextField(
+//                modifier = Modifier
+//                    .weight(1f),
+//                value = message,
+//                onValueChange = {
+//                    message = it
+//                },
+//                label = { Text("Enter text") },
+//                shape = RoundedCornerShape(8.dp)
+//            )
+//
+//            Spacer(modifier = Modifier.width(8.dp))
 
             Surface(
                 shape = CircleShape,
                 color = colorResource(R.color.lighterNavy),
-                shadowElevation = 1.dp,
+                shadowElevation = 5.dp,
                 modifier = Modifier
-                    .size(50.dp)
+                    .size(40.dp)
 
             ) {
                 IconButton(
@@ -238,14 +244,18 @@ fun MedicationPage(
                         onSendMessage(message)
                         message = ""
                     },
+                    modifier = Modifier
+                        .aippGradientBackground()
+
 
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.aistar),
                         contentDescription = "Search",
-                        tint = Color.White,
+                        tint = Color.Blue,
                         modifier = Modifier
-                                .size(30.dp)
+                                .size(20.dp),
+
                     )
                 }
             }

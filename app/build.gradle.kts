@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.ui.test.junit4)
     implementation(libs.google.firebase.ai)
     implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.ui.graphics)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

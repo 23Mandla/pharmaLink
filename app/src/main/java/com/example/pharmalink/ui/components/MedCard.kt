@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
 import com.example.pharmalink.data.dataclass.Medication
+import com.example.pharmalink.utils.HorizontalDivider
 
 // TODO code from chatgbt, Change before pushing
 @Composable
@@ -108,12 +109,30 @@ fun MedCard(
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            Text(
-                "10 AM",
-                color = colorResource(R.color.darkGreen),
-                fontSize = 12.sp,
-                modifier = Modifier.padding(start = 4.dp)
-            )
+             Row(
+                 verticalAlignment = Alignment.CenterVertically,
+                 modifier = Modifier.fillMaxWidth(),
+
+             ) {
+                 Text(
+                     "10 AM",
+                     color = colorResource(R.color.darkGreen),
+                     fontSize = 12.sp,
+                     modifier = Modifier.padding(start = 4.dp)
+                 )
+
+                 Spacer(modifier = Modifier.width(3.dp))
+
+                 Box(
+                     modifier = Modifier
+                         .height(1.dp)
+                         .width(30.dp)
+                         .background(
+                             Color.DarkGray
+                         )
+                 )
+
+             }
         }
     }
 }

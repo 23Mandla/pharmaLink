@@ -14,7 +14,7 @@ class MedicationDCTest {
         medicationName = "Bisoprolol",
         pharmacist = "Ashla",
         prescriptionId = 228,
-        strength = "20 mg"
+        strength = "20 mg",
     )
 
     private val medicationDTO = MedicationDTO(

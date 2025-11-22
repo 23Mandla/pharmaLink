@@ -1,40 +1,30 @@
 package com.example.pharmalink.ui.components
 
 import android.content.Context
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlendMode
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
 import com.example.pharmalink.data.dataclass.Medication
-import com.example.pharmalink.utils.HorizontalDivider
 
 // TODO code from chatgbt, Change before pushing
 @Composable
@@ -46,7 +36,7 @@ fun MedCard(
     Box(
         modifier = Modifier
             .wrapContentSize()
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(10.dp))
             .clickable { onClick() }
             .graphicsLayer {
 
@@ -56,13 +46,13 @@ fun MedCard(
             .drawWithContent {
 
                 drawRect(
-                    Color.White.copy(alpha = 0.3f),
+                    Color.White.copy(alpha = 0.5f),
                     blendMode = BlendMode.SrcOver
                 )
                 drawContent()
             }
             .background(Color.White.copy(alpha = 0.15f))
-            .border(1.dp, Color.White.copy(alpha = 0.3f), RoundedCornerShape(16.dp))
+            .border(1.dp, Color.White.copy(alpha = 0.5f), RoundedCornerShape(16.dp))
             .padding(top = 13.dp),
 
     ) {
@@ -155,6 +145,6 @@ fun MedCardPreview(){
         "Diazepam",
         "Dev",
         731,
-        "10 mg"
+        "10 mg",
     ))
 }

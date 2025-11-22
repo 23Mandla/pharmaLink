@@ -62,7 +62,7 @@ class MedicationViewModelTest {
             "Bisoprolol",
             "Ashla",
             228,
-            "20 mg"
+            "20 mg",
         )
 
         `when`(

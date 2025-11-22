@@ -14,10 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.pharmalink.data.repository.MedicationImpl
-import com.example.pharmalink.data.retroClient.InternetService
 import com.example.pharmalink.data.viewmodel.MedicationViewModel
-import com.example.pharmalink.data.viewmodel.ViewModelFactory
 import com.example.pharmalink.ui.components.CategHeader
 import com.example.pharmalink.ui.components.Categories
 import com.example.pharmalink.ui.components.HeaderSection
@@ -34,7 +31,6 @@ fun MainPage(
     ) {
 
     val medicationState = viewModel.medicationState.collectAsStateWithLifecycle()
-    Log.d("MedicationState", medicationState.value.toString())
 
     LazyColumn (
         modifier = Modifier
@@ -46,7 +42,7 @@ fun MainPage(
         item { WeeklyCalendar() }
         item { MedsHeader() }
         item { MedSection(
-            medicationState.value.geminiResponse,
+            medicationState.value,
             navController = navController
             )
         }

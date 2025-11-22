@@ -1,17 +1,12 @@
 package com.example.pharmalink.ui.medication
 
-import android.content.res.Resources
-import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +23,6 @@ import androidx.compose.ui.unit.*
 import com.example.pharmalink.R
 import com.example.pharmalink.data.dataclass.Medication
 import com.example.pharmalink.ui.components.medication_page.*
-import com.example.pharmalink.utils.HorizontalDivider
 import com.example.pharmalink.utils.aippGradientBackground
 
 @Composable

@@ -13,7 +13,8 @@ class MedicationDC : ApiMapper<Medication, MedicationDTO> {
             medicationName = entity.medicationName,
             pharmacist = entity.pharmacist,
             prescriptionId = entity.prescriptionId,
-            strength = entity.strength
+            strength = entity.strength,
+            sideEffects = emptyList()
         )
     }
 

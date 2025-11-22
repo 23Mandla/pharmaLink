@@ -1,7 +1,6 @@
 package com.example.pharmalink.data.viewmodel
 
 import android.util.Log
-import androidx.compose.ui.semantics.text
 import androidx.lifecycle.ViewModel
 
 import androidx.lifecycle.viewModelScope
@@ -14,12 +13,6 @@ import com.google.firebase.ai.type.GenerativeBackend
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-data class MedicationState (
-    val isLoading: Boolean = false,
-    val medication: List<Medication> = emptyList(),
-    val error: String = "",
-    val geminiResponse: List<String> = emptyList()
-)
 class MedicationViewModel(
     private val medicationRepository: MedicationRepository
 ): ViewModel() {
@@ -35,54 +28,21 @@ class MedicationViewModel(
         getMedication()
     }
 
-    //For testing purposes
-    private fun getHardCodedMedication(){
-        _medicationState.update {
-            it.copy(
-                isLoading = false,
-                medication = listOf(
-                    Medication(
-                        "Every evening",
-                        1,
-                        "Diazepam",
-                        "Dev",
-                        731,
-                        "10 mg"
-                    ),
-                    Medication(
-                        "4 times a day",
-                        1,
-                        "Paracetamol",
-                        "Dev",
-                        731,
-                        "10 mg"
-                    ),
-                    Medication(
-                        "Every evening",
-                        1,
-                        "Ibuprofen",
-                        "Dev",
-                        731,
-                        "10 mg"
-                    )
-                )
-            )
-        }
-    }
-
     private fun getMedication(){
         viewModelScope.launch {
             _medicationState.update { it.copy(isLoading = true) }
             try {
                     val medications = medicationRepository.getMedication(InternetService.API_KEY)
-                    val geminiSideEffects = askSideEffects()
-                    Log.d("askGemini", "getMedication: $geminiSideEffects")
+
+                    val updatedMedications = medications.map {
+                        val sideEffects = askSideEffects(it.m_name())
+                        it.newSideEffects(sideEffects)
+                    }
 
                     _medicationState.update { it.copy(
                         isLoading = false,
-                        medication = medications,
-                        geminiResponse = geminiSideEffects
-                    )
+                        medication = updatedMedications,
+                    ) 
                 }
             }catch (e: Exception){
                 Log.d("ViewModelError", "Error fetching data: ${e.message}")
@@ -92,21 +52,7 @@ class MedicationViewModel(
         }
     }
 
-    fun askGemini(question: String) {
-        val geminiContext = """
-            You are an assistant in a health app.
-            Always provide accurate and short answers.
-        """.trimIndent()
-        viewModelScope.launch {
-            val response = model.generateContent("""
-                $geminiContext : $question
-            """.trimIndent())
-            Log.d("TAG", "askGemini: ${response.text}")
-        }
-    }
-
-    //TODO update the medication state
-    private suspend fun askSideEffects(): List<String> {
+    private suspend fun askSideEffects(medName: String = ""): List<String> {
         val geminiContext = """
             You are an assistant in a health app.
             Always provide accurate and short answers.
@@ -114,7 +60,7 @@ class MedicationViewModel(
 
         val response = model.generateContent("""
             $geminiContext
-             List 4 common side effects of Diazepam.
+             List 4 common side effects of $medName.
              Return them comma-separated
         """.trimIndent())
         Log.d("TAG", "askGemini: ${response.text}")
@@ -131,4 +77,23 @@ class MedicationViewModel(
 
         return emptyList()
     }
+
+    fun askGemini(question: String) {
+        val geminiContext = """
+            You are an assistant in a health app.
+            Always provide accurate and short answers.
+        """.trimIndent()
+        viewModelScope.launch {
+            val response = model.generateContent("""
+                $geminiContext : $question
+            """.trimIndent())
+            Log.d("TAG", "askGemini: ${response.text}")
+        }
+    }
 }
+
+data class MedicationState (
+    val isLoading: Boolean = false,
+    val medication: List<Medication> = emptyList(),
+    val error: String = "",
+)
